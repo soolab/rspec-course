@@ -26,6 +26,9 @@ RSpec.describe ProgrammingLanguage do
     # 바로 밑에것이 없었다면은 위에 있는 language가 적용되었을 것이지만
     # 여기에서 overwriting을 했다는 것이다.
     # 왜냐면 그냥 가장 가까이에 있는 것을 통해 참조한다고 생각하면 될 것 같다.
+    # context나 describe 같은 것은 테스트를 더 잘 분류하기 위한 목적도 있지만은
+    # 이에 따른 scope가 생겨나기 때문에 before, after와 같은 메소드나
+    # let과 같은 메소드들이 scope의 영향을 받아서 동작한다는 것을 이해면 될 것 같다.
 
     let(:language) { ProgrammingLanguage.new }
 
