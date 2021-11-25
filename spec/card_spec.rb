@@ -103,4 +103,14 @@ RSpec.describe 'Card' do
     card.rank = 'Queen'
     expect(card.rank).to eq('Queen')
   end
+
+  it 'has a custom error message' do
+    comparision = 'Spade'
+
+    # 뭐 별건 아닌데 에러 메세지를 내가 원하는 방식으로 나타내는 것임
+    # 두 번째 string argument가 그냥 나오는 메세지라고 생각하면 된다.
+    # 뭐 굳이 사용해야하나 라는 생각이 들긴 한다.
+    expect(card.suit).to eq(comparision), "Hey, I expected #{comparision} but I got #{card.suit} instead!"
+  end
+
 end
