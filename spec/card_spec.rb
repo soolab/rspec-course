@@ -51,9 +51,11 @@ RSpec.describe 'Card' do
   # 그건 아닌가. yield 안에 있는 것이라서 상관 없을지도 모른다.
   # 그리고 yield안에는 어떤 것이라도 사용할 수 있는 것인가.
   # 아무튼 이렇게 Card를 뱉는 card method를 만들고 각각의 it 안에서 card를 사용할 수 있다는 것이다.
-  def card
-    Card.new('Ace', 'Spades')
-  end
+
+
+  # def card
+  #   Card.new('Ace', 'Spades')
+  # end
 
     it 'has a rank' do
       expect(@card.rank).to eq('Ace')
@@ -63,4 +65,13 @@ RSpec.describe 'Card' do
       expect(@card.suit).to eq('Spades')
     end
 
+  # 이 테스트 케이스 같은 경우
+  # card helper method를 사용하게 되면은 되지 않을 것이다.
+  # before, instance variable을 사용해야지만 가능할 것이다.
+  # 뭐 장단점이 있는데 이건 알아서 판단하도록 한다.
+  it 'has a rank and that rank can change' do
+    expect(@card.rank).to eq('Ace')
+    @card.rank = 'Queen'
+    expect(@card.rank).to eq('Queen')
+  end
 end
