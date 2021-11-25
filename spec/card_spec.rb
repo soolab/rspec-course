@@ -93,6 +93,11 @@ RSpec.describe 'Card' do
   # 딱 필요한 let만 만들어서 중복을 줄일 수 있다는 것이다.
   # 더 느리다는 것이다. 이게 let을 쓰는 이유라고 생각하면 된다.
 
+  # let! 이라는 것은 Lazy Loading이 아니기 떄문에
+  # 일단 let이랑 비슷하게 it마다 돌긴 하는데
+  # 그게 해당 it에서 필요할때 로딩하는게 아니라 그냥 만들어진다.
+  # 쉽게 생각하면 it이 돌기전에 만들어진다고 생각하면 될 것 같다.
+
   it 'has a rank and that rank can change' do
     expect(card.rank).to eq('Ace')
     card.rank = 'Queen'
