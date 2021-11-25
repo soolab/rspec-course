@@ -63,6 +63,11 @@ RSpec.describe 'Card' do
   # {} 에 있는 것이 card에 초기화된다고 생각하면 된다.
   let(:card) { Card.new('Ace', 'Spades') }
 
+  # Lazy loading이기 때문에 y가 필요하다면 먼저 let y를 볼 것이다.
+  # 근데 y를 초기화 하려면은 x가 필요하네? 뭐 이런식인 것이다.
+  let(:x) { 1 + 1}
+  let(:y) { x + 10 }
+
     it 'has a rank' do
       expect(card.rank).to eq('Ace')
     end
@@ -85,6 +90,7 @@ RSpec.describe 'Card' do
   # 즉 describe에 있다고 그게 그때 생기는 것이 아니라
   # 실제 card가 필요할때 생긴다는 것이다.
   # before와 비교하면 매 it 마다 무조건 생기니까 메모리 상으로 문제가 생길 수 있고
+  # 딱 필요한 let만 만들어서 중복을 줄일 수 있다는 것이다.
   # 더 느리다는 것이다. 이게 let을 쓰는 이유라고 생각하면 된다.
 
   it 'has a rank and that rank can change' do
