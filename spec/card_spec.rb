@@ -32,6 +32,9 @@ RSpec.describe 'Card' do
   # before(:example)
   # before(:suite)
   # 뭐 등등 많긴 한데 아래처럼 적으면 모든 it이 돌기전에 다시 이 before문을 실행시킨다고 이해하면 된다.
+
+  # 이게 첫 번쨰 방법임
+  # instance variable과 before method를 사용하는 방법이다.
   before do
     # instance varialbe로 만들어 줘야함.
     # 근데 한 번만 그럼 초기화 시켜줘야 되는거 아닌가.
@@ -40,6 +43,16 @@ RSpec.describe 'Card' do
     # 단순히 card만 하더라도 괜찮은 것 같지만 그렇게 하면 안된다는 사실.
     # 근데 궁금한건 module이나 class가 아닌데 instance variable을 사용할 수 있는거임??
     @card = Card.new('Ace', 'Spades')
+  end
+
+  # 이게 두 번째 방법임
+  # RSpec 안에다가는 method를 정의할 수 있다는 거임.
+  # 근데 솔직히 이게 이해가 안감. 이미 RSpec의 describe 메소드 안에 들어와 있는거 아닌가.
+  # 그건 아닌가. yield 안에 있는 것이라서 상관 없을지도 모른다.
+  # 그리고 yield안에는 어떤 것이라도 사용할 수 있는 것인가.
+  # 아무튼 이렇게 Card를 뱉는 card method를 만들고 각각의 it 안에서 card를 사용할 수 있다는 것이다.
+  def card
+    Card.new('Ace', 'Spades')
   end
 
     it 'has a rank' do
