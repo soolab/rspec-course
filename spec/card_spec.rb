@@ -105,7 +105,7 @@ RSpec.describe 'Card' do
   end
 
   it 'has a custom error message' do
-    comparision = 'Spade'
+    comparision = 'Spades'
 
     # 뭐 별건 아닌데 에러 메세지를 내가 원하는 방식으로 나타내는 것임
     # 두 번째 string argument가 그냥 나오는 메세지라고 생각하면 된다.
