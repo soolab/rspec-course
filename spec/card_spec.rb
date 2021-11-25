@@ -35,15 +35,15 @@ RSpec.describe 'Card' do
 
   # 이게 첫 번쨰 방법임
   # instance variable과 before method를 사용하는 방법이다.
-  before do
+  # before do
     # instance varialbe로 만들어 줘야함.
     # 근데 한 번만 그럼 초기화 시켜줘야 되는거 아닌가.
     # 각각의 it마다 instance variable이 초기화 되어야 한다는 것 같다.
     # 뭐 그렇게 이해해도 될 것 같다.
     # 단순히 card만 하더라도 괜찮은 것 같지만 그렇게 하면 안된다는 사실.
     # 근데 궁금한건 module이나 class가 아닌데 instance variable을 사용할 수 있는거임??
-    @card = Card.new('Ace', 'Spades')
-  end
+    # @card = Card.new('Ace', 'Spades')
+  # end
 
   # 이게 두 번째 방법임
   # RSpec 안에다가는 method를 정의할 수 있다는 거임.
@@ -57,21 +57,39 @@ RSpec.describe 'Card' do
   #   Card.new('Ace', 'Spades')
   # end
 
+  # 세번째 방법은 let이라는 method를 사용하는 것이다.
+  # 메모이제이션이라고는 하지만 그냥 캐싱이라고 이해하면 편하다.
+
+  # {} 에 있는 것이 card에 초기화된다고 생각하면 된다.
+  let(:card) { Card.new('Ace', 'Spades') }
+
     it 'has a rank' do
-      expect(@card.rank).to eq('Ace')
+      expect(card.rank).to eq('Ace')
     end
 
     it 'has a rank' do
-      expect(@card.suit).to eq('Spades')
+      expect(card.suit).to eq('Spades')
     end
 
   # 이 테스트 케이스 같은 경우
   # card helper method를 사용하게 되면은 되지 않을 것이다.
   # before, instance variable을 사용해야지만 가능할 것이다.
   # 뭐 장단점이 있는데 이건 알아서 판단하도록 한다.
+
+  # 하지만 이 예제는 let을 위해서 나온 것이구만.
+  # let 이라는 것은 it 마다 새로 초기화 되는 것은 맞다.
+  # 하지만 하나의 it안에서는 caching되어서 한 번만 초기화되기 때문에
+  # helper method와는 다른 결과를 맞이하게 된다는 것이다.
+  # 각각의 이런 차이점을 알면은 let을 사용하는 이유를 알 것이다.
+  # 또 하나의 특징은 lazy loading이라는 것이다.
+  # 즉 describe에 있다고 그게 그때 생기는 것이 아니라
+  # 실제 card가 필요할때 생긴다는 것이다.
+  # before와 비교하면 매 it 마다 무조건 생기니까 메모리 상으로 문제가 생길 수 있고
+  # 더 느리다는 것이다. 이게 let을 쓰는 이유라고 생각하면 된다.
+
   it 'has a rank and that rank can change' do
-    expect(@card.rank).to eq('Ace')
-    @card.rank = 'Queen'
-    expect(@card.rank).to eq('Queen')
+    expect(card.rank).to eq('Ace')
+    card.rank = 'Queen'
+    expect(card.rank).to eq('Queen')
   end
 end
