@@ -32,4 +32,30 @@ RSpec.describe 'equality matchers' do
     end
   end
 
+  describe 'equal and be matcher' do
+    let(:c) { [1, 2, 3] }
+    let(:d) { [1, 2, 3] }
+    let(:e) { c }
+
+    # equality and identity 를 비교하는 것이 핵심이라고 보면 됨.
+    # equality는 값이 같으면 같게 나오는 것이고 identity는 완전히 같은 객체여야 한다는 것이다(같은 메모리를 지칭하고 있어야 한다.)
+
+    it 'cares about object identity' do
+
+      # eq, eql은 값이 같으면 같다고 하는건데
+      # 둘의 차이는 아까 봤듯이 type을 cheking 하냐 아니냐의 차이지만.
+      expect(c).to eq(d)
+      expect(c).to eql(d)
+
+      # equal은 실제로 메모리상의 같은 객체를 가리키고 있어야 한다는 것이 차이임.
+      # 뭐 이것을 얼마나 쓸지는 모르겠다 보통은 값 비교를 하기 때문이겠찌
+      # 또한 equal과 be는 완전히 같다는 것을 알면 된다.
+      expect(c).to equal(e)
+      expect(c).to be(e)
+
+      expect(c).not_to equal(d)
+    end
+
+  end
+
 end
