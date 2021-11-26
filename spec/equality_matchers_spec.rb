@@ -26,6 +26,9 @@ RSpec.describe 'equality matchers' do
       # javascript의 ===와 비슷하달까??
       expect(a).not_to eql(b)
       expect(b).not_to eql(a)
+
+      expect(a).to eql(3.0)
+      expect(b).to eql(3)
     end
   end
 
