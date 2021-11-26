@@ -19,6 +19,8 @@ RSpec.describe King do
   # subject { King.new('Boris') }
   # let(:louis) { King.new('Louis') }
 
+  # 아 참고로 subject는 RSpec에서 제공하는 helper method 정도로 이해하면 된다.
+  # subject, let, it 뭐 요런것들이 다 RSpec의 method라고 생각됨. 이건 내 추측임.
   subject { described_class.new('Boris') }
   let(:louis) { described_class.new('Louis') }
 
