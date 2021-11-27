@@ -37,6 +37,7 @@ class Movie
       actor.act
       actor.fall_off_ladder
       actor.light_on_fire
+      actor.act
     end
   end
 end
@@ -84,10 +85,24 @@ RSpec.describe Movie do
 
       subject.start_shooting
     end
+
+    it 'expects an actor to do 3 actions version two' do
+
+      # 이번에는 몇 번 호출되는지도 확인해보자!
+      # expect(stuntman).to receive(:light_one_fire).once
+      # 위에처럼 할 수 도 있지만, 아래처럼 할 수 있음.
+      # 1번 이상일떄는 이렇게 쓰고, 한 번 일때는 위에처럼 쓰는게 좋겠다.
+      expect(stuntman).to receive(:light_on_fire).exactly(1).times
+
+      # 이렇게 최대 몇 번 호출되는지 이런것도 확인할 수 있음.
+      # 아마 at_least도 있겠지 그럼, exactly, at_least, at_most를 기억해두자.
+      # expect(stuntman).to receive(:light_on_fire).at_most(1).times
+
+      expect(stuntman).to receive(:act).exactly(2).times
+      subject.start_shooting
+
+    end
   end
-
-
-
 end
 
 
