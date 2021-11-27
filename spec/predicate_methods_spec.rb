@@ -16,12 +16,10 @@ RSpec.describe 'predicate methods and predicate matchers' do
     expect(15).to be_odd
     expect(0).to be_zero
     expect([]).to be_empty
-
-    # 이건 전 시간에 이용한 0을 subject로 만들고
-    # is_expected 라는 것으로 one liner로 사용하는 것이라고 생각하면 된다.
-    describe 0 do
-      it { is_expected.to be_zero }
-    end
-
+  end
+  # 이건 전 시간에 이용한 0을 subject로 만들고
+  # is_expected 라는 것으로 one liner로 사용하는 것이라고 생각하면 된다.
+  describe 0 do
+    it { is_expected.to be_zero }
   end
 end
